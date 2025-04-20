@@ -1,0 +1,2 @@
+Compilar: 
+gcc -ansi -Wall -o ordenados main.c bucket.c funcsSort.c quick.c heap.c insertN.c -lm
