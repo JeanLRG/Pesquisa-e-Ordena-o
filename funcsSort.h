@@ -13,6 +13,7 @@ int *embaralha(int *vetor, int tam);
 #define FUNCS_SORT_H
 
 void insertion_sort(int *v, int n);
+void merge_sort_adaptado(int *v, int n);
 void selection_sort(int *v, int n);
 void quick_sort(int v[], int inicio, int fim);
 void quick_sort_adapter(int *v, int n);
