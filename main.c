@@ -6,7 +6,7 @@
 
 #define TAM1 100000
 #define TAM2 1000000
-#define TAM3 100000000
+#define TAM3 10000000
 
 void gerar_vetor(int *v, int n) {
     int i;
@@ -43,9 +43,9 @@ int main() {
 
     printf("\nTestando Bucket + Insertion\n");
 
-    testar_sort("Bucket + Insertion", insertion_sort, TAM1);
-    testar_sort("Bucket + Insertion", insertion_sort, TAM2);
-    testar_sort("Bucket + Insertion", insertion_sort, TAM3);
+    testar_sort("Bucket + Merge", merge_sort_adaptado, TAM1);
+    testar_sort("Bucket + Merge", merge_sort_adaptado, TAM2);
+    testar_sort("Bucket + Merge", merge_sort_adaptado, TAM3);
 
 
     return 0;
