@@ -16,6 +16,11 @@ void gerar_vetor(int *v, int n) {
 
 void testar_sort(const char *nome, void (*sort_func)(int*, int), int n) {
     int *v = malloc(n * sizeof(int));
+    if (!v) {
+        printf("Erro ao alocar memória para %d elementos.\n", n);
+        return;
+    }
+
     gerar_vetor(v, n);
 
     clock_t inicio = clock();
@@ -27,26 +32,35 @@ void testar_sort(const char *nome, void (*sort_func)(int*, int), int n) {
     free(v);
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     srand(time(NULL));
-    
+
     printf("Testando bucket + Heap\n");
     testar_sort("Bucket + Heap", heap_sort, TAM1);
     testar_sort("Bucket + Heap", heap_sort, TAM2);
     testar_sort("Bucket + Heap", heap_sort, TAM3);
 
     printf("\nTestando Bucket + Quick\n");
-
     testar_sort("Bucket + Quick", quick_sort_adapter, TAM1);
     testar_sort("Bucket + Quick", quick_sort_adapter, TAM2);
     testar_sort("Bucket + Quick", quick_sort_adapter, TAM3);
 
-    printf("\nTestando Bucket + Insertion\n");
-
+    printf("\nTestando Bucket + Merge\n");
     testar_sort("Bucket + Merge", merge_sort_adaptado, TAM1);
     testar_sort("Bucket + Merge", merge_sort_adaptado, TAM2);
     testar_sort("Bucket + Merge", merge_sort_adaptado, TAM3);
 
+    if (argc > 1) {
+        int tamanho_personalizado = atoi(argv[1]);
+        if (tamanho_personalizado > 0) {
+            printf("\nTestando com tamanho personalizado: %d\n", tamanho_personalizado);
+            testar_sort("Bucket + Heap", heap_sort, tamanho_personalizado);
+            testar_sort("Bucket + Quick", quick_sort_adapter, tamanho_personalizado);
+            testar_sort("Bucket + Merge", merge_sort_adaptado, tamanho_personalizado);
+        } else {
+            printf("\nTamanho inválido fornecido: %s\n", argv[1]);
+        }
+    }
 
     return 0;
 }
